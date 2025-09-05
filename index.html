@@ -36,7 +36,7 @@
 
     // 讀取 URL 參數，例如 NFC 標籤帶入: ?video=2
     const params = new URLSearchParams(window.location.search);
-    const videoNumber = params.get('VIDEO') || '001'; // 預設播放 video001
+    const videoNumber = params.get('mp4') || '001'; // 預設播放 video001
 
     // 設定對應 MP4 檔案
     video.src = `2025${videoNumber}.mp4`;
