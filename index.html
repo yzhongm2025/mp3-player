@@ -33,7 +33,7 @@
 
     // 讀取 URL 參數，例如 NFC 標籤帶入: ?song=2
     const params = new URLSearchParams(window.location.search);
-    const songNumber = params.get('song') || '1'; // 預設播放 song1
+    const songNumber = params.get('SONG') || '001'; // 預設播放 song001
 
     // 設定對應 MP3
     audio.src = `2025${songNumber}.mp3`;
