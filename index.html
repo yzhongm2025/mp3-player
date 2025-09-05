@@ -12,41 +12,46 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      color: #333;
+      background-color: #000;
+      color: #fff;
       text-align: center;
+      flex-direction: column;
     }
-    h1 {
-      font-size: 24px;
+    video {
+      max-width: 100%;
+      max-height: 100vh;
+      background: black;
     }
   </style>
 </head>
 <body>
-  <h1>🎵 點螢幕播放音樂 🎵</h1>
+  <h1>🎵 點螢幕播放音樂… 🎵</h1>
 
-  <audio id="player" autoplay>
-    您的瀏覽器不支援 audio 標籤。
-  </audio>
+  <video id="player" autoplay muted playsinline>
+    您的瀏覽器不支援 video 標籤。
+  </video>
 
   <script>
-    const audio = document.getElementById('player');
+    const video = document.getElementById('player');
 
-    // 讀取 URL 參數，例如 NFC 標籤帶入: ?song=2
+    // 讀取 URL 參數，例如 NFC 標籤帶入: ?video=2
     const params = new URLSearchParams(window.location.search);
-    const songNumber = params.get('SONG') || '001'; // 預設播放 song001
+    const videoNumber = params.get('VIDEO') || '001'; // 預設播放 video001
 
-    // 設定對應 MP3
-    audio.src = `2025${songNumber}.mp3`;
+    // 設定對應 MP4 檔案
+    video.src = `2025${videoNumber}.mp4`;
 
     // 嘗試自動播放
-    audio.play().catch(() => {
+    video.play().catch(() => {
       console.log("自動播放失敗，需要使用者互動");
     });
 
-    // 手機瀏覽器點擊任意位置可解鎖播放
+    // 手機點擊螢幕後解鎖播放（移除 muted 才有聲音）
     document.body.addEventListener('click', () => {
-      audio.play();
+      video.muted = false; // 解除靜音
+      video.play();
     }, { once: true });
   </script>
 </body>
 </html>
+
