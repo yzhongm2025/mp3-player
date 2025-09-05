@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自動播放音樂</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 音樂正在播放… 🎵</h1>
+
+  <audio id="player" autoplay>
+    您的瀏覽器不支援 audio 標籤。
+  </audio>
+
+  <script>
+    const audio = document.getElementById('player');
+
+    // 讀取 URL 參數，例如 NFC 標籤帶入: ?song=2
+    const params = new URLSearchParams(window.location.search);
+    const songNumber = params.get('song') || '1'; // 預設播放 song1
+
+    // 設定對應 MP3
+    audio.src = `2025${songNumber}.mp3`;
+
+    // 嘗試自動播放
+    audio.play().catch(() => {
+      console.log("自動播放失敗，需要使用者互動");
+    });
+
+    // 手機瀏覽器點擊任意位置可解鎖播放
+    document.body.addEventListener('click', () => {
+      audio.play();
+    }, { once: true });
+  </script>
+</body>
+</html>
